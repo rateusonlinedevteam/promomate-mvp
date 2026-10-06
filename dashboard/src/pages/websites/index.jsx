@@ -1,24 +1,31 @@
-import { useState } from "react";
-
-export default function WebsitesPage({ websites, onCreate, onSelect }) {
+import { useState, useEffect } from "react";
+import { loadSites, addWebsite } from "../../util/util";
+export default function WebsitesPage({ site }) {
+  const [websites, setWebsites] = useState(site ? [site] : []);
   const [name, setName] = useState("");
   const [domain, setDomain] = useState("");
+  const onSelect = (website) => {
+    console.log("Selected website:", website);
+  };
 
+  console.log("Websites state:", websites, websites.length);
   return (
     <div>
       <div className="card">
         <h2>My Websites</h2>
-        {websites.map((w) => (
-          <div
-            className="row"
-            key={w.id}
-            onClick={() => onSelect(w)}
-            style={{ cursor: "pointer" }}
-          >
-            <span>{w.name}</span>
-            <b>{w.domain}</b>
-          </div>
-        ))}
+        {websites &&
+          websites.length > 0 &&
+          websites.map((w) => (
+            <div
+              className="row"
+              key={w.id}
+              onClick={() => onSelect(w)}
+              style={{ cursor: "pointer" }}
+            >
+              <span>{w.name}</span>
+              <b>{w.domain}</b>
+            </div>
+          ))}
       </div>
 
       <div className="card">
@@ -26,18 +33,22 @@ export default function WebsitesPage({ websites, onCreate, onSelect }) {
         <div style={{ display: "grid", gap: 8 }}>
           <input
             placeholder="Name"
+            className="form-control input"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
             placeholder="Domain"
+            className="input"
             value={domain}
             onChange={(e) => setDomain(e.target.value)}
           />
           <button
             onClick={() => {
               if (name && domain) {
-                onCreate(name, domain);
+                addWebsite(name, domain).then((w) => {
+                  setWebsites([w]);
+                });
                 setName("");
                 setDomain("");
               }

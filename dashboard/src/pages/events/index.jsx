@@ -1,13 +1,12 @@
-export default function EventsPage({ site, api }) {
+import { useState, useEffect } from "react";
+import { loadAnalytics } from "../../util/util";
+export default function EventsPage({ site }) {
   const [analytics, setAnalytics] = useState(null);
   useEffect(() => {
     if (!site) return;
-    (async () => {
-      const res = await fetch(
-        api + "/api/v1/analytics/" + site.id + "/summary",
-      );
-      setAnalytics(await res.json());
-    })();
+    loadAnalytics(site).then((data) => {
+      setAnalytics(data);
+    });
   }, [site]);
 
   if (!site)
