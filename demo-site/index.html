@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PromoMate Demo Website</title>
+    <script
+      src="http://localhost:3033/tracker/tracker.js"
+      data-site-id="demo_gt5d8fzhsif"
+      data-api="http://localhost:3033"
+    ></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial;
+        color: #172033;
+      }
+      nav {
+        padding: 20px;
+        position: sticky;
+        top: 0;
+        background: white;
+        border-bottom: 1px solid #ddd;
+      }
+      section {
+        min-height: 70vh;
+        padding: 80px 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .hero {
+        background: #eaf2ff;
+      }
+      .features {
+        background: #fff5e9;
+      }
+      .pricing {
+        background: #edf9f1;
+      }
+      .contact {
+        background: #f8efff;
+      }
+      button {
+        width: max-content;
+        padding: 12px 20px;
+        border: 0;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      PromoMate Demo · <a href="#features">Features</a> ·
+      <a href="#pricing">Pricing</a> · <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="hero" data-promomate="hero">
+      <h1>Understand your website visitors</h1>
+      <p>
+        Scroll through this demo and PromoMate will track page views and section
+        visibility.
+      </p>
+      <button data-promomate-event="hero_cta_click">Get Started</button>
+    </section>
+
+    <section class="features" id="features" data-promomate="features">
+      <h2>Features</h2>
+      <p>Visitor analytics, traffic sources, devices and section engagement.</p>
+    </section>
+
+    <section class="pricing" id="pricing" data-promomate="pricing">
+      <h2>Pricing</h2>
+      <p>Use this section to test visibility analytics.</p>
+    </section>
+
+    <section class="contact" id="contact" data-promomate="contact">
+      <h2>Contact</h2>
+      <p>Scroll here and check Section Performance in the dashboard.</p>
+    </section>
+  </body>
+</html>
